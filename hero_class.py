@@ -1,3 +1,4 @@
+from entity_class import Entity
 from weapon_class import Weapon
 from spell_class import Spell
 
@@ -5,13 +6,13 @@ from spell_class import Spell
 class CantCastError(Exception):
     pass
 
-class Hero:
+
+class Hero(Entity):
     def __init__(self,
                  name, title, health=100, mana=100, mana_regeneration_rate=2):
+        Entity.__init__(self, health, mana)
         self.hero_name = name
         self.hero_title = title
-        self.hero_health = health
-        self.hero_mana = mana
         self.hero_mana_regeneration_rate = mana_regeneration_rate
 
     def known_as(self):
@@ -19,40 +20,25 @@ class Hero:
         return message.format(self.hero_name, self.hero_title)
 
     def get_health(self):
-        return int(self.hero_health)
+        return Entity.get_health(self)
 
     def get_mana(self):
-        return int(self.hero_mana)
+        return Entity.get_mana(self)
 
     def is_alive(self):
-        if self.hero_health == 0:
-            return False
-        else:
-            return True
+        return Entity.is_alive(self)
 
     def can_cast(self):
-        if self.hero_mana == 0:
-            return False
-        else:
-            return True
+        return Entity.can_cast(self)
 
     def take_damage(self, damage_points):
-        self.hero_health -= damage_points
-        if self.hero_health < 0:
-            self.hero_health = 0
+        return Entity.take_damage(self, damage_points)
 
     def take_healing(self, healing_points):
-        if self.hero_health == 0:
-            return False
-        self.hero_health += healing_points
-        if self.hero_health >= 100:
-            self.hero_health = 100
+        return Entity.take_healing(self, healing_points)
 
     def take_mana(self, mana_points):
-        if self.hero_mana + mana_points > 100:
-            self.hero_mana = 100
-        else:
-            self.hero_mana += mana_points
+        return Entity.take_mana(self, mana_points)
 
     def equip(self, weapon):
         self.hero_weapon = weapon
