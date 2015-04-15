@@ -5,7 +5,7 @@ class Weapon:
         self.weapon_damage = damage
 
     def get_weapon_name(self):
-        return self.weapon_name
+        return str(self.weapon_name)
 
     def get_weapon_damage(self):
-        return self.weapon_damage
+        return int(self.weapon_damage)

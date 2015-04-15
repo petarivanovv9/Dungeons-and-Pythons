@@ -7,7 +7,10 @@ class Spell:
         self.spell_cast_range = cast_range
 
     def get_spell_name(self):
-        return self.spell_name
+        return str(self.spell_name)
 
     def get_spell_damage(self):
-        return self.spell_damage
+        return int(self.spell_damage)
+
+    def get_spell_mana_cost(self):
+        return int(self.spell_mana_cost)
