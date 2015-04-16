@@ -1,4 +1,5 @@
 from hero_class import Hero
+from enemy_class import Enemy
 
 
 class Dungeon:
@@ -22,9 +23,10 @@ class Dungeon:
                     counter += 1
                     self.dungeon_map[i][j] = "H"
 
-
-    def move_hero(self, position="None"):
-        pass
+    def move_hero(self, direction="None"):
+        for i in range(0, len(self.dungeon_map)):
+            for j in range(0, len(self, dungeon_map[i])):
+                pass
 
 
 h = Hero(name="Bron", title="Dragonslayer", health=100, mana=100, mana_regeneration_rate=2)
