@@ -1,7 +1,13 @@
+class CantCastError(Exception):
+    pass
+
+
 class Entity():
-    def __init__(self, health, mana):
+
+    def __init__(self, health, mana, damage):
         self.health = health
         self.mana = mana
+        self.damage = damage
 
     def get_health(self):
         return int(self.health)
@@ -39,3 +45,19 @@ class Entity():
         if self.health < 0:
             self.health = 0
         return self.health
+
+    def equip(self, weapon):
+        self.weapon = weapon
+
+    def learn(self, spell):
+        self.spell = spell
+
+    def attack(self, by="None"):
+        if by == "weapon":
+            return self.weapon.get_weapon_damage()
+        if by == "magic":
+            if self.mana < self.spell.get_spell_damage():
+                raise CantCastError
+            else:
+                self.mana -= self.spell.get_spell_mana_cost()
+                return self.spell.get_spell_damage()
