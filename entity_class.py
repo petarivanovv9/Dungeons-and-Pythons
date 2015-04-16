@@ -1,3 +1,7 @@
+from weapon_class import Weapon
+from spell_class import Spell
+
+
 class CantCastError(Exception):
     pass
 
@@ -54,10 +58,10 @@ class Entity():
 
     def attack(self, by="None"):
         if by == "weapon":
-            return self.weapon.get_weapon_damage()
+            return self.damage + self.weapon.get_weapon_damage()
         if by == "magic":
             if self.mana < self.spell.get_spell_damage():
                 raise CantCastError
             else:
                 self.mana -= self.spell.get_spell_mana_cost()
-                return self.spell.get_spell_damage()
+                return self.damage + self.spell.get_spell_damage()
