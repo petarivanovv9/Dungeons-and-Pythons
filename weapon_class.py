@@ -9,3 +9,6 @@ class Weapon:
 
     def get_weapon_damage(self):
         return int(self.weapon_damage)
+
+    def __repr__(self):
+        return "{} - {} damage".format(self.weapon_name, self.weapon_damage)

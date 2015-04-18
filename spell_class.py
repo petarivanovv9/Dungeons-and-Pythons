@@ -17,3 +17,7 @@ class Spell:
 
     def get_spell_cast_range(self):
         return int(self.spell_cast_range)
+
+    def __repr__(self):
+        return "{} - {} damage {} mana".format(
+            self.spell_name, self.spell_damage, self.spell_mana_cost)
