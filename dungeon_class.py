@@ -1,5 +1,8 @@
 from hero_class import Hero
 from enemy_class import Enemy
+from fight_class import Fight
+from weapon_class import Weapon
+from spell_class import Spell
 
 
 class Dungeon:
@@ -60,12 +63,24 @@ class Dungeon:
                     # if end of battle is True ... else exit
                     current_enemy = self.check_enemy(
                         self.hero_x - 1, self.hero_y)
-                    print ("A fight is started between {} and {}".format(
-                        self.dungeon_hero, current_enemy))
+                    # print ("A fight is started between {} and {}".format(
+                    #     self.dungeon_hero, current_enemy))
+                    fight = Fight(self.dungeon_hero, current_enemy)
+                    result = fight.start_fight()
+                    if result is not False:
+                        self.hero = result
+                        self.dungeon_map[self.hero_x][self.hero_y] = "."
+                        self.hero_x -= 1
+                        self.dungeon_map[self.hero_x][self.hero_y] = "H"
+                        return True
+                    else:
+                        exit
+                elif self.dungeon_map[self.hero_x - 1][self.hero_y] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_x -= 1
                     self.dungeon_map[self.hero_x][self.hero_y] = "H"
-                    return True
+                    print ("Congratulations! You've successfully completed the level.")
+                    exit
                 else:
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_x -= 1
@@ -81,12 +96,23 @@ class Dungeon:
                     # if end of battle is True ... else exit
                     current_enemy = self.check_enemy(
                         self.hero_x + 1, self.hero_y)
-                    print ("A fight is started between {} and {}".format(
-                        self.dungeon_hero, current_enemy))
+                    # print ("A fight is started between {} and {}".format(
+                    #     self.dungeon_hero, current_enemy))
+                    fight = Fight(self.dungeon_hero, current_enemy)
+                    result = fight.start_fight()
+                    if result is not False:
+                        self.dungeon_map[self.hero_x][self.hero_y] = "."
+                        self.hero_x += 1
+                        self.dungeon_map[self.hero_x][self.hero_y] = "H"
+                        return True
+                    else:
+                        exit
+                elif self.dungeon_map[self.hero_x + 1][self.hero_y] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_x += 1
                     self.dungeon_map[self.hero_x][self.hero_y] = "H"
-                    return True
+                    print ("Congratulations! You've successfully completed the level.")
+                    exit
                 else:
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_x += 1
@@ -102,12 +128,23 @@ class Dungeon:
                     # if end of battle is True ... else exit
                     current_enemy = self.check_enemy(
                         self.hero_x, self.hero_y + 1)
-                    print ("A fight is started between {} and {}".format(
-                        self.dungeon_hero, current_enemy))
+                    # print ("A fight is started between {} and {}".format(
+                    #     self.dungeon_hero, current_enemy))
+                    fight = Fight(self.dungeon_hero, current_enemy)
+                    result = fight.start_fight()
+                    if result is not False:
+                        self.dungeon_map[self.hero_x][self.hero_y] = "."
+                        self.hero_y += 1
+                        self.dungeon_map[self.hero_x][self.hero_y] = "H"
+                        return True
+                    else:
+                        exit
+                elif self.dungeon_map[self.hero_x][self.hero_y + 1] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_y += 1
                     self.dungeon_map[self.hero_x][self.hero_y] = "H"
-                    return True
+                    print ("Congratulations! You've successfully completed the level.")
+                    exit
                 else:
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_y += 1
@@ -123,12 +160,23 @@ class Dungeon:
                     # if end of battle is True ... else exit
                     current_enemy = self.check_enemy(
                         self.hero_x, self.hero_y - 1)
-                    print ("A fight is started between {} and {}".format(
-                        self.dungeon_hero, current_enemy))
+                    # print ("A fight is started between {} and {}".format(
+                    #     self.dungeon_hero, current_enemy))
+                    fight = Fight(self.dungeon_hero, current_enemy)
+                    result = fight.start_fight()
+                    if result is not False:
+                        self.dungeon_map[self.hero_x][self.hero_y] = "."
+                        self.hero_y -= 1
+                        self.dungeon_map[self.hero_x][self.hero_y] = "H"
+                        return True
+                    else:
+                        exit
+                elif self.dungeon_map[self.hero_x][self.hero_y - 1] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_y -= 1
                     self.dungeon_map[self.hero_x][self.hero_y] = "H"
-                    return True
+                    print ("Congratulations! You've successfully completed the level.")
+                    exit
                 else:
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_y -= 1
@@ -144,31 +192,37 @@ class Dungeon:
 
 
 # h = Hero(name="Bron", title="Dragonslayer", health=100, mana=100, mana_regeneration_rate=2)
-# mapp = Dungeon("level1")
-# mapp.spawn(h)
-# mapp.print_map()
-# print (10 * "-")
-# print (mapp.move_hero("right"))
-# print (mapp.print_map())
-# print (10 * "-")
-# print (mapp.move_hero("down"))
-# print (mapp.print_map())
-# print (10 * "-")
-# print (mapp.move_hero("down"))
-# print (mapp.print_map())
-# print (10 * "-")
-# print (mapp.move_hero("down"))
-# print (mapp.print_map())
-# print (10 * "-")
-# print (mapp.move_hero("down"))
-# print (mapp.print_map())
-# print (10 * "-")
-# print (mapp.move_hero("right"))
-# print (mapp.print_map())
-# print (10 * "-")
-# print (mapp.move_hero("right"))
-# print (mapp.print_map())
-# print (mapp.move_hero("right"))
-# print (mapp.print_map())
-# print (mapp.move_hero("down"))
-# print (mapp.print_map())
+# w = Weapon(name="The Axe of Destiny", damage=20)
+# h.equip(w)
+# s = Spell(name="Fireball", damage=30, mana_cost=50, cast_range=2)
+# h.learn(s)
+
+# map = Dungeon("level1")
+# map.spawn(h)
+# map.print_map()
+# map.move_hero("right")
+# map.move_hero("down")
+# map.move_hero("down")
+# map.move_hero("down")
+# map.print_map()
+# map.move_hero("right")
+# map.move_hero("right")
+# map.move_hero("right")
+# map.move_hero("right")
+# map.move_hero("up")
+# map.print_map()
+# map.move_hero("up")
+# map.move_hero("up")
+# map.move_hero("up")
+# map.move_hero("right")
+# map.move_hero("right")
+# map.move_hero("right")
+# map.move_hero("right")
+# map.print_map()
+# map.move_hero("down")
+# map.move_hero("down")
+# map.move_hero("down")
+# map.print_map()
+# map.print_map()
+# map.move_hero("down")
+# map.print_map()

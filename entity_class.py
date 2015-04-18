@@ -8,6 +8,8 @@ class Entity():
         self.health = health
         self.mana = mana
         self.damage = damage
+        self.weapon = None
+        self.spell = None
 
     def get_health(self):
         return int(self.health)
@@ -61,3 +63,9 @@ class Entity():
             else:
                 self.mana -= self.spell.get_spell_mana_cost()
                 return self.damage + self.spell.get_spell_damage()
+
+    def has_weapon(self):
+        return self.weapon is not None
+
+    def has_spell(self):
+        return self.spell is not None
