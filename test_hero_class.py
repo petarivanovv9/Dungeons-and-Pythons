@@ -5,7 +5,7 @@ from entity_class import Entity
 import unittest
 
 
-class HeroTest(unittest.TestCase):
+class TestHero(unittest .TestCase):
 
     def setUp(self):
         self.test_hero = Hero("Masturbarq", "the Great")

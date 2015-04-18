@@ -1,7 +1,3 @@
-from weapon_class import Weapon
-from spell_class import Spell
-
-
 class CantCastError(Exception):
     pass
 
