@@ -41,16 +41,16 @@ def chooce_spell():
 
 def main():
     print ("Welcome to my game called Dungeons and Pythons!")
-    print (20 * '*')
+    print (30 * '*')
     print ("First, you'll create your hero:")
     my_hero = create_hero()
-    print (20 * '~')
+    print (30 * '~')
     print ("Good job. Now, chooce one weapon from the list:")
     my_weapon = chooce_weapon()
-    print (20 * '~')
+    print (30 * '~')
     print ("If you wish, You can learn one of the spells below")
     my_spell = chooce_spell()
-    print (20 * '~')
+    print (30 * '~')
 
     level = input("Yeah, It's the final step bro. Enter the level you want to play: ")
     print ("Enjoy the game :)")
@@ -61,7 +61,7 @@ def main():
     current_map = Dungeon(level)
     current_map.spawn(my_hero)
 
-    print (20 * '<>')
+    print (30 * '<>')
 
     print ("The game is started. Menu of options: ")
     print ("1. Print the current map")

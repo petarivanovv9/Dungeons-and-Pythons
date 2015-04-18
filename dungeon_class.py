@@ -3,6 +3,7 @@ from enemy_class import Enemy
 from fight_class import Fight
 from weapon_class import Weapon
 from spell_class import Spell
+import random
 
 
 class Dungeon:
@@ -21,9 +22,29 @@ class Dungeon:
         self.enemy2_pos = (2, 5)
         self.enemy3 = Enemy(10)
         self.enemy3_pos = (2, 9)
+        self.treasure = {
+                   "heal_potion": [25, 50, 75, 100],
+                   "mana_potion": [25, 50, 75, 100],
+                   }
 
     def generate_level(self):
         pass
+
+    def pick_treasure(self):
+        treasures = ["heal_potion", "mana_potion"]
+        random_treasure = random.choice(treasures)
+
+        if random_treasure == "heal_potion":
+            health_points = random.choice(self.treasure[random_treasure])
+            self.dungeon_hero.take_healing(health_points)
+            print ("Found health potion. Hero health is {}.".format(
+                self.dungeon_hero.get_health()))
+
+        if random_treasure == "mana_potion":
+            mana_points = random.choice(self.treasure[random_treasure])
+            self.dungeon_hero.take_mana(mana_points)
+            print ("Found mana potion. Hero mana is {}.".format(
+                self.dungeon_hero.get_mana()))
 
     def print_map(self):
         # result = []
@@ -75,6 +96,11 @@ class Dungeon:
                         return True
                     else:
                         exit
+                elif self.dungeon_map[self.hero_x - 1][self.hero_y] == "T":
+                    self.pick_treasure()
+                    self.dungeon_map[self.hero_x][self.hero_y] = "."
+                    self.hero_x -= 1
+                    self.dungeon_map[self.hero_x][self.hero_y] = "H"
                 elif self.dungeon_map[self.hero_x - 1][self.hero_y] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_x -= 1
@@ -107,6 +133,11 @@ class Dungeon:
                         return True
                     else:
                         exit
+                elif self.dungeon_map[self.hero_x + 1][self.hero_y] == "T":
+                    self.pick_treasure()
+                    self.dungeon_map[self.hero_x][self.hero_y] = "."
+                    self.hero_x += 1
+                    self.dungeon_map[self.hero_x][self.hero_y] = "H"
                 elif self.dungeon_map[self.hero_x + 1][self.hero_y] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_x += 1
@@ -139,6 +170,11 @@ class Dungeon:
                         return True
                     else:
                         exit
+                elif self.dungeon_map[self.hero_x][self.hero_y + 1] == "T":
+                    self.pick_treasure()
+                    self.dungeon_map[self.hero_x][self.hero_y] = "."
+                    self.hero_y += 1
+                    self.dungeon_map[self.hero_x][self.hero_y] = "H"
                 elif self.dungeon_map[self.hero_x][self.hero_y + 1] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_y += 1
@@ -171,6 +207,11 @@ class Dungeon:
                         return True
                     else:
                         exit
+                elif self.dungeon_map[self.hero_x][self.hero_y - 1] == "T":
+                    self.pick_treasure()
+                    self.dungeon_map[self.hero_x][self.hero_y] = "."
+                    self.hero_y -= 1
+                    self.dungeon_map[self.hero_x][self.hero_y] = "H"
                 elif self.dungeon_map[self.hero_x][self.hero_y - 1] == "G":
                     self.dungeon_map[self.hero_x][self.hero_y] = "."
                     self.hero_y -= 1
@@ -189,40 +230,3 @@ class Dungeon:
 
     def hero_attack(self, by="None"):
         pass
-
-
-# h = Hero(name="Bron", title="Dragonslayer", health=100, mana=100, mana_regeneration_rate=2)
-# w = Weapon(name="The Axe of Destiny", damage=20)
-# h.equip(w)
-# s = Spell(name="Fireball", damage=30, mana_cost=50, cast_range=2)
-# h.learn(s)
-
-# map = Dungeon("level1")
-# map.spawn(h)
-# map.print_map()
-# map.move_hero("right")
-# map.move_hero("down")
-# map.move_hero("down")
-# map.move_hero("down")
-# map.print_map()
-# map.move_hero("right")
-# map.move_hero("right")
-# map.move_hero("right")
-# map.move_hero("right")
-# map.move_hero("up")
-# map.print_map()
-# map.move_hero("up")
-# map.move_hero("up")
-# map.move_hero("up")
-# map.move_hero("right")
-# map.move_hero("right")
-# map.move_hero("right")
-# map.move_hero("right")
-# map.print_map()
-# map.move_hero("down")
-# map.move_hero("down")
-# map.move_hero("down")
-# map.print_map()
-# map.print_map()
-# map.move_hero("down")
-# map.print_map()
