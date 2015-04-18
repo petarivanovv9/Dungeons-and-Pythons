@@ -57,6 +57,10 @@ class TestHero(unittest .TestCase):
         self.assertEqual(self.test_hero.attack(by="weapon"), 20)
         self.assertEqual(self.test_hero.attack(by="magic"), 30)
 
+    def test_str(self):
+        text = "{}(hp:{}, mana:{})".format(self.test_hero.known_as(), self.test_hero.get_health(), self.test_hero.get_mana())
+        self.assertEqual(str(self.test_hero), text)
+
 
 if __name__ == '__main__':
     unittest.main()

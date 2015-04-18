@@ -13,3 +13,9 @@ class Hero(Entity):
     def known_as(self):
         message = "{} the {}"
         return message.format(self.hero_name, self.hero_title)
+
+    def __str__(self):
+        return "{}(hp:{}, mana:{})".format(self.known_as(), self.health, self.mana)
+
+    def __repr__(self):
+        return self.__str__()

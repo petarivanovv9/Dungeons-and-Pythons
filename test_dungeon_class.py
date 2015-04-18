@@ -12,11 +12,11 @@ class TestDungeon(unittest .TestCase):
         # dungeon = Dungeon("level1")
         self.assertIsInstance(self.test_dungeon, Dungeon)
 
-    def test_print_map(self):
-        # dungeon = Dungeon("level1")
-        test_map = ["S.##.....T", "#T##..###.",
-                    "#.###E###S", "#.E...###.", "###T#####G"]
-        self.assertEqual(self.test_dungeon.print_map(), test_map)
+    # def test_print_map(self):
+    #     # dungeon = Dungeon("level1")
+    #     test_map = ["S.##.....T", "#T##..###.",
+    #                 "#.###E###S", "#.E...###.", "###T#####G"]
+    #     self.assertEqual(self.test_dungeon.print_map(), test_map)
 
     def test_spawn(self):
         pass

@@ -14,3 +14,6 @@ class Spell:
 
     def get_spell_mana_cost(self):
         return int(self.spell_mana_cost)
+
+    def get_spell_cast_range(self):
+        return int(self.spell_cast_range)
