@@ -30,7 +30,7 @@ class Dungeon:
                 self.dungeon_map.append(list(line))
         # It's for level1.
         # Later, I'll generate random enemies for different levels.
-        self.enemy1 = Enemy(5)
+        self.enemy1 = Enemy(120)
         self.enemy1_pos = (3, 2)
         self.enemy2 = Enemy(5)
         self.enemy2_pos = (2, 5)
@@ -132,7 +132,10 @@ class Dungeon:
             # self.__place_on_map(new_position, self.HERO)
             if is_dead:
                 print("Loser!")
-                return "Loser"
+                return -1
+            if self.dungeon_map[new_position[0]][new_position[1]] == Dungeon.EXIT:
+                print("Congratulations! You've completed the level.")
+                return 0
 
     def hero_attack(self, by="None"):
         pass
