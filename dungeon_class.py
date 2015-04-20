@@ -8,6 +8,20 @@ import random
 
 class Dungeon:
 
+    OBSTACLE = "#"
+    SPAWNING_POINT = "S"
+    ENEMY = "E"
+    EXIT = "G"
+    TREASURE = "T"
+    WALKABLE_PATH = "."
+    HERO = "H"
+    DIRECTIONS = {
+        "up": (-1, 0),
+        "down": (1, 0),
+        "left": (0, -1),
+        "right": (0, 1)
+    }
+
     def __init__(self, filename):
         with open(filename, "r") as in_file:
             lines = in_file.read().splitlines()
@@ -37,7 +51,7 @@ class Dungeon:
         if random_treasure == "heal_potion":
             health_points = random.choice(self.treasure[random_treasure])
             self.dungeon_hero.take_healing(health_points)
-            print ("Found health potion. Hero health is {}.".format(
+            print("Found health potion. Hero health is {}.".format(
                 self.dungeon_hero.get_health()))
 
         if random_treasure == "mana_potion":
@@ -74,13 +88,51 @@ class Dungeon:
             return self.enemy3
 
     def can_make_move(self, coordinates):
-        pass
+        x, y = coordinates
+        if x < 0 or x >= len(self.dungeon_map):
+            return False
+
+        if y < 0 or y >= len(self.dungeon_map[0]):
+            return False
+
+        if self.dungeon_map[x][y] == Dungeon.OBSTACLE:
+            return False
+        return True
 
     def move_consequence(self, position):
-        pass
+        x, y = position
+        next_move = self.dungeon_map[x][y]
+        if next_move == Dungeon.TREASURE:
+            self.pick_treasure()
+            return False
+        if next_move == Dungeon.ENEMY:
+            current_enemy = self.check_enemy(x, y)
+            fight = Fight(self.dungeon_hero, current_enemy)
+            result = fight.start_fight()
+            if result is not False:
+                self.dungeon_hero = result
+                return False
+            return True
+
 
     def move_hero(self, direction):
-        pass
+        dx, dy = Dungeon.DIRECTIONS[direction]
+        # hero_x = self.hero_x 
+        # hero_y = self.hero_y
+        
+        new_position = (self.hero_x + dx, self.hero_y + dy)
+
+        if self.can_make_move(new_position):
+            self.dungeon_map[self.hero_x][self.hero_y] = Dungeon.WALKABLE_PATH
+            is_dead = self.move_consequence(new_position)
+            
+            self.dungeon_map[new_position[0]][new_position[1]] = Dungeon.HERO
+            # self.__hero_position = new_position
+            self.hero_x, self.hero_y = new_position
+            # self.__place_on_map(new_position, self.HERO)
+            if is_dead:
+                print("Loser!")
+                return "Loser"
 
     def hero_attack(self, by="None"):
         pass
