@@ -72,9 +72,9 @@ class Dungeon:
         counter = 0
         for i in range(0, len(self.dungeon_map)):
             for j in range(0, len(self.dungeon_map[i])):
-                if self.dungeon_map[i][j] == "S" and counter < 1:
+                if self.dungeon_map[i][j] == Dungeon.SPAWNING_POINT and counter < 1:
                     counter += 1
-                    self.dungeon_map[i][j] = "H"
+                    self.dungeon_map[i][j] = Dungeon.HERO
                     self.dungeon_hero = hero
                     # self.hero_pos = (i, j)
                     self.hero_x = i
