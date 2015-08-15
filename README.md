@@ -10,7 +10,7 @@ It's a simple, 2D turn-based console game filled with dungeons and pythons! We h
 
 1. Clone the repository.
 2. Open a terminal.
-3. Type python3 __init__.py.
+3. Type python3 main.py.
 4. Enjoy the game!
 
 ## Our Hero
