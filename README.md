@@ -1,5 +1,7 @@
 # Dungeons and Pythons
 
+In order to run the console game you should clone the repo, open a shell and type python3 __init__.py and the game will be started.
+
 We are going to make a simple, 2D turn-based console game filled with dungeons and pythons!
 
 We are going to have hero, enemies, weapons, treasures and magic!
